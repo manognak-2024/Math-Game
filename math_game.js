@@ -11,26 +11,52 @@ async function getMathQuestion() {
             num1 = Math.floor(Math.random() * 6);
             num2 = Math.floor(Math.random() * 6);
             operator = Math.random() > 0.5 ? '+' : '-';
+
+            // Prevent negative results for subtraction
+            if (operator === '-' && num1 < num2) {
+                [num1, num2] = [num2, num1]; // Swap to make num1 larger
+            }
             break;
+
         case '7-9':
             // Addition, subtraction, multiplication, division with integers
             num1 = Math.floor(Math.random() * 50) + 1;
             num2 = Math.floor(Math.random() * 50) + 1;
             operator = ['+', '-', '*', '/'][Math.floor(Math.random() * 4)];
+
+            // Prevent negative results for subtraction
+            if (operator === '-' && num1 < num2) {
+                [num1, num2] = [num2, num1]; // Swap to make num1 larger
+            }
+
+            // Prevent division by zero and make division simpler (whole numbers)
+            if (operator === '/') {
+                num2 = num2 === 0 ? 1 : num2; // Avoid dividing by zero
+                num1 = num1 * num2; // Ensure num1 is a multiple of num2 to avoid fractions
+            }
             break;
+
         case '10+':
             // Addition, subtraction, multiplication, division with decimals
             num1 = (Math.random() * 100).toFixed(2);
             num2 = (Math.random() * 100).toFixed(2);
             operator = ['+', '-', '*', '/'][Math.floor(Math.random() * 4)];
+
+            // Prevent negative results for subtraction
+            if (operator === '-' && parseFloat(num1) < parseFloat(num2)) {
+                [num1, num2] = [num2, num1]; // Swap to make num1 larger
+            }
+
+            // Prevent division by zero and allow division to be reasonable
+            if (operator === '/') {
+                num2 = parseFloat(num2) === 0 ? 1 : num2; // Avoid dividing by zero
+                num1 = (parseFloat(num1) * parseFloat(num2)).toFixed(2); // Adjust for division
+            }
             break;
+
         default:
             document.getElementById('question').innerText = 'Choose an age group to start!';
             return;
-    }
-
-    if (operator === '/') {
-        num1 = (num1 * num2).toFixed(2); // Avoid dividing by zero
     }
 
     document.getElementById('question').innerText = `What is ${num1} ${operator} ${num2}?`;
