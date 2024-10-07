@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Game for Kids</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header">
+        <h1>Age-Appropriate Math Game</h1>
+        <div class="age-buttons">
+            <button onclick="changeAgeGroup('5-6')">5-6 Years</button>
+            <button onclick="changeAgeGroup('7-9')">7-9 Years</button>
+            <button onclick="changeAgeGroup('10+')">10+ Years</button>
+        </div>
+        <p id="score">Score: 0</p>
+    </div>
+
+    <div class="boy-character">
+        <img src="boy-happy.png" alt="Boy Character" id="boy-img">
+    </div>
+
+    <div class="question-container">
+        <p id="question">Choose an age group to start!</p>
+    </div>
+
+    <div class="answer-container">
+        <input type="text" id="answer" placeholder="Your answer">
+        <button onclick="checkAnswer()">Submit</button>
+    </div>
+
+    <div id="message"></div>
+
+    <script src="game.js"></script>
+</body>
+</html>
