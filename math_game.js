@@ -112,6 +112,7 @@ async function checkAnswer() {
 
     setTimeout(() => {
         document.getElementById('message').innerText = ''; // Clear feedback message
+        document.getElementById('boy-img').src = 'boy-happy.png'; // Reset to default image
         getMathQuestion(); // Fetch a new question
     }, 1500); // Delay before fetching the next question
 }
